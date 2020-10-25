@@ -5,7 +5,7 @@ String::String()
 {
 	strLength = 0;
 	str = new char[0];
- 	str[0] = '\0';		// no sé por qué esto funciona
+ 	str[0] = '\0';		// no sé por qué esto funciona?!?!?!?
 }
 
 String::String(const char* toCopy)
@@ -35,7 +35,7 @@ String::String(const String& toCopy)
 	//delete str;
 	if (toCopy.str != nullptr) {
 		strLength = toCopy.strLength;
-		str = new char[strLength + 1];			// resizes current String
+		str = new char[strLength];				// resizes current String, not necessary the +1 for the \0
 		str[0] = '\0';							// init
 		int i = 0;
 		char current = toCopy.str[i];
@@ -76,6 +76,28 @@ void String::clear()
 void String::print()
 {
 	std::cout << str << std::endl;
+}
+
+String* String::operator+(const String& b)
+{
+	String* stringResult = new String();
+	stringResult->strLength = strLength + b.strLength;
+	stringResult->str = new char[stringResult->strLength];
+	/*result[0] = '\0';*/			// init in case both are empty
+	int i = 0;
+	if (str != nullptr) {
+		for (i; str[i] != '\0'; ++i) {
+			stringResult->str[i] = str[i];
+		}
+	}
+
+	if (b.str != nullptr) {
+		for (int j = 0; b.str[j] != '\0'; ++i, ++j) {
+			stringResult->str[i] = b.str[j];
+		}
+	}
+	stringResult->str[stringResult->strLength] = '\0';
+	return stringResult;
 }
 
 bool String::operator==(const String& b) const

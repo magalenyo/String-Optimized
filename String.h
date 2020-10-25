@@ -14,7 +14,7 @@ class String
 		void clear();
 		void print();
 
-		String operator+(const String& b);
+		String* operator+(const String &b);
 		bool operator==(const String& b) const;
 		bool operator==(const char* &b) const;
 

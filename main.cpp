@@ -15,6 +15,11 @@ int main()
     String* stringB = new String(*stringA);
     stringB->print();
 
+    String* stringConcatA = new String("This is a");
+    String* stringConcatB = new String("new concat string");
+    String* result = *stringConcatA + *stringConcatB;
+    result->print();
+
     return 0;
 }
 
