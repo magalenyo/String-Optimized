@@ -4,7 +4,7 @@
 String::String()
 {
 	strLength = 0;
-	str = new char[0];
+	str = new char[1];
  	str[0] = '\0';		// no sé por qué esto funciona?!?!?!?
 }
 
@@ -34,7 +34,7 @@ String::String(const String& toCopy)
 {
 	if (toCopy.str != nullptr) {
 		strLength = toCopy.strLength;
-		str = new char[strLength];				// resizes current String, not necessary the +1 for the \0?!?!
+		str = new char[strLength + 1];			// resizes current String, not necessary the +1 for the \0?!?!
 		str[0] = '\0';							// init
 		int i = 0;
 		char current = toCopy.str[i];
@@ -81,7 +81,7 @@ String* String::operator+(const String& b)
 {
 	String* stringResult = new String();
 	stringResult->strLength = strLength + b.strLength;
-	stringResult->str = new char[stringResult->strLength];
+	stringResult->str = new char[stringResult->strLength+1];
 	int i = 0;
 	if (str != nullptr) {
 		for (i; str[i] != '\0'; ++i) {
