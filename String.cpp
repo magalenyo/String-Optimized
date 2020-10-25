@@ -12,8 +12,8 @@ String::String(const char* toCopy)
 {
 	//delete str;
 	if (toCopy != nullptr) {
-		strLength = lengthOf(toCopy);		// looks for new string length
-		str = new char[strLength + 1];				// resizes current String
+		strLength = lengthOf(toCopy);			// looks for new string length
+		str = new char[strLength + 1];			// resizes current String
 		str[0] = '\0';							// init
 		int i = 0;
 		char current = toCopy[i];
@@ -28,7 +28,28 @@ String::String(const char* toCopy)
 		strLength = 0;
 		str = nullptr;
 	}
+}
 
+String::String(const String& toCopy)
+{
+	//delete str;
+	if (toCopy.str != nullptr) {
+		strLength = toCopy.strLength;
+		str = new char[strLength + 1];			// resizes current String
+		str[0] = '\0';							// init
+		int i = 0;
+		char current = toCopy.str[i];
+		while (toCopy.str[i] != '\0') {				// while not end line
+			str[i] = current;					// copy current character
+			i++;
+			current = toCopy.str[i];
+		}
+		str[i] = current;						// will copy \0
+	}
+	else {
+		strLength = 0;
+		str = nullptr;
+	}
 }
 
 String::~String()

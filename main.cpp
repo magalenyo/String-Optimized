@@ -6,10 +6,14 @@
 
 int main()
 {
-    String *test = new String();
-    test = new String("Hola que tal");
-
+    String* test = new String();
+    test = new String("How's it going");
     test->print();
+    delete test;
+
+    String* stringA = new String("Hi, I'm a string");
+    String* stringB = new String(*stringA);
+    stringB->print();
 
     return 0;
 }
