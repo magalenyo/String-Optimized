@@ -23,7 +23,7 @@ private:
 	char* str;
 	int strLength;
 
-	int lengthOf(const char*& b) const;
+	int lengthOf(const char* b) const;
 };
 #endif // !_STRING_
 

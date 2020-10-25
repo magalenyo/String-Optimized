@@ -32,14 +32,13 @@ String::String(const char* toCopy)
 
 String::String(const String& toCopy)
 {
-	//delete str;
 	if (toCopy.str != nullptr) {
 		strLength = toCopy.strLength;
-		str = new char[strLength];				// resizes current String, not necessary the +1 for the \0
+		str = new char[strLength];				// resizes current String, not necessary the +1 for the \0?!?!
 		str[0] = '\0';							// init
 		int i = 0;
 		char current = toCopy.str[i];
-		while (toCopy.str[i] != '\0') {				// while not end line
+		while (toCopy.str[i] != '\0') {			// while not end line
 			str[i] = current;					// copy current character
 			i++;
 			current = toCopy.str[i];
@@ -83,7 +82,6 @@ String* String::operator+(const String& b)
 	String* stringResult = new String();
 	stringResult->strLength = strLength + b.strLength;
 	stringResult->str = new char[stringResult->strLength];
-	/*result[0] = '\0';*/			// init in case both are empty
 	int i = 0;
 	if (str != nullptr) {
 		for (i; str[i] != '\0'; ++i) {
@@ -102,24 +100,52 @@ String* String::operator+(const String& b)
 
 bool String::operator==(const String& b) const
 {
-	/*if (strLength != lengthOf(b.str)) {
-
-	}*/
-	return false;
+	if (str == nullptr || b.str == nullptr) {
+		return false;
+	}
+	else {
+		int i = 0;
+		while (str[i] != '\0' || b.str[i] != '\0') {
+			if (str[i] != b.str[i]) {
+				return false;
+			}
+			i++;
+		}
+		// todos han sido checkeados
+		if (str[i] == b.str[i]) {		// si los dos tienen el '\0' end
+			return true;
+		}
+		else return false;
+	}
+	
 }
 
-bool String::operator==(const char*& b) const
+bool String::operator==(const char* &b) const
 {
-	return false;
+	if (str == nullptr || b == nullptr) {
+		return false;
+	}
+	else {
+		int i = 0;
+		while (str[i] != '\0' || b[i] != '\0') {
+			if (str[i] != b[i]) {
+				return false;
+			}
+			i++;
+		}
+		// todos han sido checkeados
+		if (str[i] == b[i]) {		// si los dos tienen el '\0' end
+			return true;
+		}
+		else return false;
+	}
 }
 
-int String::lengthOf(const char*& b) const
+int String::lengthOf(const char* b) const
 {
 	int n = 0;
 	if (b != nullptr) {
-		for (n = 0; b[n] != '\0'; ++n) {
-
-		}
+		for (n = 0; b[n] != '\0'; ++n) {}
 	}
 	return n;
 }

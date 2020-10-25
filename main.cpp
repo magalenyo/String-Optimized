@@ -19,6 +19,24 @@ int main()
     String* stringConcatB = new String("new concat string");
     String* result = *stringConcatA + *stringConcatB;
     result->print();
+    std::cout << result->length() << std::endl;
+
+    String* firstIf = new String("hellohello");
+    String* secondIf = new String("hellohello ");
+    if (*firstIf == *secondIf) {
+        std::cout << "Strings are the same" << std::endl;
+    }
+    else {
+        std::cout << "Strings are NOT the same" << std::endl;
+    }
+
+    String* firstIfSecondTry = new String("hellohello");
+    if (*firstIfSecondTry == "hellohello") {         // como puede ser que me esté pillando el primer operador!?!?!?!?
+        std::cout << "Strings are the same" << std::endl;
+    }
+    else {
+        std::cout << "Strings are NOT the same" << std::endl;
+    }
 
     return 0;
 }
